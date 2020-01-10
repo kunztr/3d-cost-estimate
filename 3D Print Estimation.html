@@ -1,0 +1,99 @@
+<html>
+    <head><title>Volume Calculator</title>
+
+    </head>
+    <body>
+        <header>
+        3D Print Cost Calculator
+        </header>
+
+        <br>
+        Printer: 
+        <select name="Printer" id=printer>
+        <option name="None">-</option>
+        <option value="Fortus">Fortus</option>
+        <option value="Connex">Connex</option>
+        </select>
+        <br>
+        <br>
+        Density: 
+        <select name="Density" id=density>
+        <option name="None">-</option>
+        <option value="Low">Low</option>
+        <option value="High">High</option>
+        <option value="Solid">Solid</option>
+        </select>
+        <br>
+        (Fortus Only)
+        <br>
+        <br>
+        Units: 
+        <select name="Units" id=units>
+        <option name="None">-</option>
+        <option value="in">in</option>
+        <option value="mm">mm</option>
+        </select>
+        <br>
+        <br>
+        Length: <input type="number" name="length" id="l">
+        <br>
+        <br>
+        Width:  <input type="number" name="width" id="w">
+        <br>
+        <br>
+        Height: <input type="number" name="height" id="h">
+        <br>
+        <br>
+        <button onclick="calc()">Calculate</button>
+        <br>
+        <br>
+        Estimated Cost:
+        <p1 id="result"></p1>
+        
+        
+        <script>
+        function calc()
+            {
+
+                var p = document.getElementById("printer").selectedIndex;
+                var pval = 1;
+                if(p == 1){
+                    pval = 6.79
+                }
+                if(p == 2){
+                    pval = 6.99
+                }
+                
+                var d = document.getElementById("density").selectedIndex;
+                var dval = 1;
+                if(d == 1){
+                    dval = .66;
+                }
+                if(d == 2){
+                    dval = .75;
+                }
+                if(d == 3){
+                    dval = 1;
+                }
+                
+                var u = document.getElementById("units").selectedIndex;
+                var uval = 1;
+                if(u == 1){
+                    uval = 1;
+                }
+                else if(u == 2){
+                    uval = 0.00006102374
+                }
+                
+                var l = parseFloat(document.getElementById("l").value);
+                var w = parseFloat(document.getElementById("w").value);
+                var h = parseFloat(document.getElementById("h").value);
+                var lwh = l*w*h;
+                
+                var prod = lwh * pval * dval * uval + 1.99
+                var strprod = prod.toString(10)
+                document.getElementById("result").innerHTML ="$" +  prod.toString();
+            }
+        </script>
+    </body>
+</html>
