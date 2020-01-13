@@ -27,21 +27,12 @@
         (Fortus Only)
         <br>
         <br>
-        Units: 
-        <select name="Units" id=units>
+        Volume: <input type="number" name="volume" id="v">
+                <select name="Units" id=units>
         <option name="None">-</option>
-        <option value="in">in</option>
-        <option value="mm">mm</option>
+        <option value="in">in^3</option>
+        <option value="mm">mm^3</option>
         </select>
-        <br>
-        <br>
-        Length: <input type="number" name="length" id="l">
-        <br>
-        <br>
-        Width:  <input type="number" name="width" id="w">
-        <br>
-        <br>
-        Height: <input type="number" name="height" id="h">
         <br>
         <br>
         <button onclick="calc()">Calculate</button>
@@ -85,14 +76,12 @@
                     uval = 0.00006102374
                 }
                 
-                var l = parseFloat(document.getElementById("l").value);
-                var w = parseFloat(document.getElementById("w").value);
-                var h = parseFloat(document.getElementById("h").value);
-                var lwh = l*w*h;
+                var vol = parseFloat(document.getElementById("v").value);
                 
-                var prod = lwh * pval * dval * uval + 1.99
-                var strprod = prod.toString(10)
-                document.getElementById("result").innerHTML ="$" +  prod.toString();
+                var cost = vol * pval * dval * uval + 1.99;
+                cost = cost.toFixed(2);
+                
+                document.getElementById("result").innerHTML ="$" +  cost.toString();
             }
         </script>
     </body>
